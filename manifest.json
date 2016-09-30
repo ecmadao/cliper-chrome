@@ -17,10 +17,13 @@
     "default_icon": {
       "38": "icons/cliper_38.png"
     },
-    "default_popup": "popup.html",
+    "default_popup": "view/popup.html",
     "default_title" : "保存到cliper"
   },
-  "background": { "scripts": ["js/background.js"] },
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches" : ["http://*/*", "https://*/*"],

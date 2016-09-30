@@ -6,21 +6,27 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   }
 });
 
-chrome.contextMenus.create({
-  type: 'normal',
-  title: 'save page',
-  id: 'save_page',
-  onclick: function() {
-    alert('save_page');
+function handleMenuClick(info) {
+  if (info.menuItemId === 'save_page') {
+    alert('save_page')
   }
-});
-
-chrome.contextMenus.create({
-  type: 'normal',
-  title: 'save selection',
-  id: 'save_selection',
-  contexts: ['selection'],
-  onclick: function() {
+  if (info.menuItemId === 'save_selection') {
     alert(selection);
   }
+}
+
+chrome.contextMenus.onClicked.addListener(handleMenuClick);
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.contextMenus.create({
+    type: 'normal',
+    title: 'save page',
+    id: 'save_page'
+  });
+
+  chrome.contextMenus.create({
+    type: 'normal',
+    title: 'save selection',
+    id: 'save_selection',
+    contexts: ['selection']
+  });
 });

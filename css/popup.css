@@ -1,0 +1,67 @@
+@import "./loading.css";
+
+body {
+  width: 200px;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.cliper_container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(167, 167, 167, 0.7);
+  z-index: -1;
+  opacity: 0;
+}
+
+.cliper_container.active {
+  opacity: 1;
+  z-index: 11;
+}
+
+#cliper_userinfo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#cliper_userinfo span {
+  font-size: 1.5em;
+}
+
+.cliper_form {
+  outline: none;
+  border: none;
+  background-color: #fff;
+  padding: 8px 10px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+.cliper_submit {
+  border-radius: 2px;
+  -webkit-radius: 2px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  -webkit-transition: all .4s cubic-bezier(.165,.84,.44,1);
+  transition: all .4s cubic-bezier(.165,.84,.44,1);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.12),0 0 4px 0 rgba(0,0,0,.08);
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,.12),0 0 4px 0 rgba(0,0,0,.08);
+  padding: 7px 10px;
+  margin-top: 20px;
+}
+
+.cliper_submit:hover {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 8px 0 rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 8px 0 rgba(0, 0, 0, 0.08);
+}

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "cliper",
+  "version": "0.1",
+  "description": "cliper",
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title" : "保存到cliper"
+  },
+  "content_scripts": [
+    {
+      "matches" : ["http://*/*", "https://*/*"],
+      "js": ["js/content_scripts.js"]
+    }
+  ]
+}

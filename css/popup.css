@@ -22,6 +22,7 @@ body {
   z-index: 11;
 }
 
+#cliper_userform,
 #cliper_userinfo {
   position: absolute;
   top: 50%;
@@ -30,8 +31,19 @@ body {
   text-align: center;
 }
 
+#cliper_userform span,
 #cliper_userinfo span {
   font-size: 1.5em;
+}
+
+#cliper_userform.active,
+#cliper_userinfo.active {
+  display: block;
+}
+
+#cliper_userinfo.disabled,
+#cliper_userform.disabled {
+  display: none;
 }
 
 .cliper_form {
@@ -46,7 +58,8 @@ body {
   margin-bottom: 15px;
 }
 
-.cliper_submit {
+.cliper_logout,
+.cliper_login {
   border-radius: 2px;
   -webkit-radius: 2px;
   background-color: #3498db;
@@ -61,7 +74,12 @@ body {
   margin-top: 20px;
 }
 
-.cliper_submit:hover {
+.cliper_logout {
+  background-color: #DD514C;
+}
+
+.cliper_logout,
+.cliper_login:hover {
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 8px 0 rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 8px 0 rgba(0, 0, 0, 0.08);
 }

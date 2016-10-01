@@ -6,6 +6,7 @@
   "permissions": [
     "storage",
     "contextMenus",
+    "notifications",
     "http://localhost:5000/*",
     "http://localhost:5000/*/*"
   ],

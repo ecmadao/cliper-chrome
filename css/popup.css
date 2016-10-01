@@ -58,8 +58,9 @@ body {
   margin-bottom: 15px;
 }
 
-.cliper_logout,
-.cliper_login {
+#cliper_logout,
+#cliper_login,
+#cliper_signup {
   border-radius: 2px;
   -webkit-radius: 2px;
   background-color: #3498db;
@@ -74,12 +75,17 @@ body {
   margin-top: 20px;
 }
 
-.cliper_logout {
+#cliper_signup {
+  background-color: #FFA726;
+}
+
+#cliper_logout {
   background-color: #DD514C;
 }
 
-.cliper_logout,
-.cliper_login:hover {
+#cliper_logout:hover,
+#cliper_login:hover,
+#cliper_signup:hover {
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 8px 0 rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 8px 0 rgba(0, 0, 0, 0.08);
 }

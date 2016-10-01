@@ -26,7 +26,6 @@ function getCsrf() {
     method: 'get',
     success: function(data) {
       csrf = data.data;
-      console.log('csrf: ', csrf);
     },
     error: function(err) {
       console.log(err);
@@ -34,20 +33,16 @@ function getCsrf() {
   });
 }
 
-function signUp(email, password) {
+function userSignupOrLogin(url, data) {
   $.ajax({
-    url: 'http://localhost:5000/user/signup',
+    url: url,
     method: 'post',
-    data: {
-      "email": email,
-      "password": password,
-      "_csrf": csrf
-    },
+    data: data,
     success: function(data) {
       toggleLoading(false);
       if (data.success) {
         var user = data.data;
-        chrome.storage.local.set({user: user}, function(result) {});
+        chrome.storage.sync.set({user: user}, function(result) {});
         setPopDOM(user);
       }
     },
@@ -58,21 +53,27 @@ function signUp(email, password) {
   });
 }
 
+function signUp(email, password) {
+  var data = {
+    "email": email,
+    "password": password,
+    "_csrf": csrf
+  };
+  userSignupOrLogin('http://localhost:5000/user/signup', data);
+}
+
+function login(email, password) {
+  var data = {
+    "email": email,
+    "password": password,
+    "_csrf": csrf
+  };
+  userSignupOrLogin('http://localhost:5000/user/login', data);
+}
+
 function logout() {
-  $.ajax({
-    url: 'http://localhost:5000/user/logout',
-    method: 'post',
-    data: {
-      "_csrf": csrf
-    },
-    success: function(data) {
-      if (data.success) {
-        chrome.storage.local.set('user', null);
-      }
-    },
-    error: function(err) {
-      console.log(err);
-    }
+  chrome.storage.sync.set({user: null}, function() {
+    setPopDOM(null);
   });
 }
 
@@ -91,7 +92,7 @@ function setPopDOM(user) {
   if (user && user.username) {
     userform.className = "disabled";
     userinfo.className = "active";
-    document.querySelector('.user_name').text = user.username;
+    $('.user_name').text(user.username);
   } else {
     userform.className = "active";
     userinfo.className = "disabled";
@@ -102,8 +103,8 @@ function setPopDOM(user) {
 toggleLoading(true);
 getCsrf();
 
-// login or signup
-document.getElementById('cliper_login').onclick = function() {
+// signup
+document.getElementById('cliper_signup').onclick = function() {
   var email = getValidateEmail('cliper_email');
   var password = getValidatePassword('cliper_password');
   if (email && password) {
@@ -111,12 +112,20 @@ document.getElementById('cliper_login').onclick = function() {
     signUp(email, password);
   }
 }
+// login
+document.getElementById('cliper_login').onclick = function() {
+  var email = getValidateEmail('cliper_email');
+  var password = getValidatePassword('cliper_password');
+  if (email && password) {
+    toggleLoading(true);
+    login(email, password);
+  }
+}
 // logout
 document.getElementById('cliper_logout').onclick = function() {
   logout();
 }
 
-chrome.storage.sync.get('user', function(user) {
-  console.log(user);
-  setPopDOM(user);
+chrome.storage.sync.get('user', function(result) {
+  setPopDOM(result && result.user);
 });

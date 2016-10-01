@@ -100,9 +100,6 @@ function setPopDOM(user) {
   toggleLoading(false);
 }
 
-toggleLoading(true);
-getCsrf();
-
 // signup
 document.getElementById('cliper_signup').onclick = function() {
   var email = getValidateEmail('cliper_email');
@@ -125,7 +122,8 @@ document.getElementById('cliper_login').onclick = function() {
 document.getElementById('cliper_logout').onclick = function() {
   logout();
 }
-
+// initial
+getCsrf();
 chrome.storage.sync.get('user', function(result) {
   setPopDOM(result && result.user);
 });

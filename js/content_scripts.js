@@ -8,12 +8,24 @@ function getSelectedText() {
   }
 }
 
-window.onmouseup = function() {
-  var text = getSelectedText();
-  if (text) {
-    chrome.runtime.sendMessage({
-      method: 'get_selection',
-      data: text
-    }, function(response) {});
+window.onmouseup = function(e) {
+  if (!e.button === 2) {
+    return;
   }
+  var text = getSelectedText();
+  var title = document.title;
+  var url = window.location.href;
+  var data = {
+    text: text,
+    title: title,
+    url: url
+  };
+  var message = {
+    method: 'get_selection',
+    data: data
+  }
+  if (text) {
+    message['method'] = 'get_page';
+  }
+  chrome.runtime.sendMessage(message, function(response) {});
 };

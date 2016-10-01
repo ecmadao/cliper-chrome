@@ -1,4 +1,5 @@
 var selection = '';
+var userId = '';
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.method === 'get_selection') {
@@ -6,12 +7,29 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   }
 });
 
+chrome.storage.sync.get('user', function(result) {
+  var userObj = result.user;
+  userId = userObj && userObj.objectId;
+});
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  for (key in changes) {
+    if (key === 'user') {
+      var storageChange = changes[key];
+      var userObj = storageChange.newValue;
+      userId = userObj && userObj.objectId;
+    }
+  }
+});
+
 function handleMenuClick(info) {
   if (info.menuItemId === 'save_page') {
-    alert('save_page')
+    alert('save_page');
+    alert(userId);
   }
   if (info.menuItemId === 'save_selection') {
     alert(selection);
+    alert(userId);
   }
 }
 

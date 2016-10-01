@@ -1,8 +1,3 @@
-chrome.storage.sync.get('user', function(result) {
-  console.log('user from sync storage');
-  console.log(result);
-});
-
 function getSelectedText() {
   if (window.getSelection) {
     return window.getSelection().toString();

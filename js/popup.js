@@ -1,5 +1,25 @@
 var csrf = '';
 
+function validateEmail(email) {
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+}
+
+function getValidateEmail(targetId) {
+  var email = document.getElementById(targetId).value;
+  if (email && validateEmail(email)) {
+    return email;
+  }
+  return false;
+}
+
+function getValidatePassword(targetId) {
+  var password = document.getElementById(targetId).value;
+  if (password && password.length > 8) {
+    return password;
+  }
+  return false
+}
+
 function getCsrf() {
   $.ajax({
     url: 'http://localhost:5000/csrf',
@@ -14,15 +34,13 @@ function getCsrf() {
   });
 }
 
-getCsrf();
-
-document.getElementById('info_submit').onclick = function() {
+function signUp(email, password) {
   $.ajax({
     url: 'http://localhost:5000/user/signup',
     method: 'post',
     data: {
-      "email": 'wlec@outlook.com',
-      "password": '123456789',
+      "email": email,
+      "password": password,
       "_csrf": csrf
     },
     success: function(data) {
@@ -32,4 +50,14 @@ document.getElementById('info_submit').onclick = function() {
       console.log(err);
     }
   });
+}
+
+getCsrf();
+
+document.getElementById('info_submit').onclick = function() {
+  var email = getValidateEmail('cliper_email');
+  var password = getValidatePassword('cliper_password');
+  if (email && password) {
+    signUp(email, password);
+  }
 }

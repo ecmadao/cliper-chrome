@@ -5,7 +5,9 @@
   "description": "cliper",
   "permissions": [
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "http://localhost:5000/*",
+    "http://localhost:5000/*/*"
   ],
   "icons": {
     "16": "icons/cliper_16.png",

@@ -62,6 +62,15 @@ function signUp(email, password) {
   userSignupOrLogin('http://localhost:5000/user/signup', data);
 }
 
+function sibmit(func) {
+  var email = getValidateEmail('cliper_email');
+  var password = getValidatePassword('cliper_password');
+  if (email && password) {
+    toggleLoading(true);
+    func(email, password);
+  }
+}
+
 function login(email, password) {
   var data = {
     "email": email,
@@ -102,26 +111,26 @@ function setPopDOM(user) {
 
 // signup
 document.getElementById('cliper_signup').onclick = function() {
-  var email = getValidateEmail('cliper_email');
-  var password = getValidatePassword('cliper_password');
-  if (email && password) {
-    toggleLoading(true);
-    signUp(email, password);
-  }
+  sibmit(signUp);
 }
 // login
 document.getElementById('cliper_login').onclick = function() {
-  var email = getValidateEmail('cliper_email');
-  var password = getValidatePassword('cliper_password');
-  if (email && password) {
-    toggleLoading(true);
-    login(email, password);
-  }
+  sibmit(login);
 }
 // logout
 document.getElementById('cliper_logout').onclick = function() {
   logout();
 }
+// user experience
+// $('.cliper_form').on('keydown', function(e) {
+//   var $this = $(this);
+//   if (e.which === 13) {
+//     var $nextInput = $this.siblings('.cliper_form');
+//     if ($this.value && $nextInput.value) {
+//       $this.next('.cliper_form').focus();
+//     }
+//   }
+// });
 // initial
 getCsrf();
 chrome.storage.sync.get('user', function(result) {

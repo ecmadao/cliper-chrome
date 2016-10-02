@@ -25,13 +25,13 @@
     "default_title" : "保存到cliper"
   },
   "background": {
-    "scripts": ["js/jquery.js", "js/background.js"],
+    "scripts": ["js/vendor/jquery-3.1.1.min.js", "js/background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches" : ["http://*/*", "https://*/*"],
-      "js": ["js/jquery.js", "js/selection.js", "js/notification.js"],
+      "js": ["js/vendor/jquery-3.1.1.min.js", "js/vendor/keyboard.min.js", "js/selection.js", "js/notification.js"],
       "css": ["css/notification.css"]
     }
   ]

@@ -1,12 +1,12 @@
 var selectionObj = null;
 var userId = '';
 
-function addCliper() {
+function addCliper(func) {
   $.ajax({
     url: 'http://localhost:5000/csrf',
     method: 'get',
     success: function(data) {
-      addNewCliper(data.data);
+      func(data.data);
     },
     error: function(err) {
       console.log(err);
@@ -46,26 +46,33 @@ function addNewCliper(csrf) {
   });
 }
 
-function handleMenuClick(info) {
+function checkCanCliper() {
   if (!userId) {
     alert('请先点击插件icon以登录');
-    return
+    return false;
   }
   if (!selectionObj) {
     alert('has no selection');
-    return
+    return false;
   }
-  if (info.menuItemId === 'save_page') {
-    alert('save_page');
-  }
-  if (info.menuItemId === 'save_selection' && selectionObj.text) {
-    addCliper();
+  return true;
+}
+
+function handleMenuClick(info) {
+  var result = checkCanCliper();
+  if (result) {
+    if (info.menuItemId === 'save_page' || info.menuItemId === 'save_selection') {
+      addCliper(addNewCliper);
+    }
   }
 }
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-  if (message.method === 'get_selection' || message.method === 'get_page') {
+  if (message.method === 'get_selection' || message.method === 'get_page' || message.method === 'save_cliper') {
     selectionObj = message.data;
+  }
+  if (message.method === 'save_cliper' && checkCanCliper()) {
+    addCliper(addNewCliper);
   }
 });
 

@@ -8,10 +8,11 @@ function getSelectedText() {
   }
 }
 
-window.onmouseup = function(e) {
-  if (!e.button === 2) {
-    return;
-  }
+function sendSelectionMessage(message) {
+  chrome.runtime.sendMessage(message, function(response) {});
+}
+
+function getSelectionMessage() {
   var text = getSelectedText();
   var title = document.title;
   var url = window.location.href;
@@ -24,8 +25,22 @@ window.onmouseup = function(e) {
     method: 'get_selection',
     data: data
   }
-  if (text) {
+  if (!text) {
     message['method'] = 'get_page';
   }
-  chrome.runtime.sendMessage(message, function(response) {});
+  return message;
+}
+
+window.onmouseup = function(e) {
+  if (!e.button === 2) {
+    return;
+  }
+  var message = getSelectionMessage();
+  sendSelectionMessage(message);
 };
+
+keyboardJS.bind('command + shift + s', function(e) {
+  var message = getSelectionMessage();
+  message['method'] = 'save_cliper';
+  sendSelectionMessage(message);
+});

@@ -26,7 +26,18 @@ function addNewCliper(csrf) {
     },
     success: function(data) {
       if (data.success) {
+        var title = selectionObj.title;
         selectionObj = null;
+        chrome.tabs.query(
+          {active: true, currentWindow: true},
+          function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id,
+              {
+                method: 'add_cliper_success',
+                data: title
+              }, function(response) {});
+          }
+        );
       }
     },
     error: function(err) {
@@ -56,9 +67,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.method === 'get_selection' || message.method === 'get_page') {
     selectionObj = message.data;
   }
-  // if (message.method === 'get_csrf') {
-  //   csrf = message.data;
-  // }
 });
 
 chrome.storage.sync.get('user', function(result) {

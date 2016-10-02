@@ -4,6 +4,7 @@
   "version": "0.1",
   "description": "cliper",
   "permissions": [
+    "tabs",
     "storage",
     "contextMenus",
     "notifications",
@@ -30,7 +31,8 @@
   "content_scripts": [
     {
       "matches" : ["http://*/*", "https://*/*"],
-      "js": ["js/content_scripts.js"]
+      "js": ["js/jquery.js", "js/selection.js", "js/notification.js"],
+      "css": ["css/notification.css"]
     }
   ]
 }

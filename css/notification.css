@@ -1,0 +1,40 @@
+.cliper_notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 250px;
+  height: 100px;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #343434;
+  -webkit-transition: all .4s cubic-bezier(.165,.84,.44,1);
+  transition: all .4s cubic-bezier(.165,.84,.44,1);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.12),0 0 4px 0 rgba(0,0,0,.08);
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,.12),0 0 4px 0 rgba(0,0,0,.08);
+  /*padding: 7px 10px;*/
+  transform: translateX(120%);
+  -webkit-transform: translateX(120%);
+  opacity: 0;
+  z-index: 999999999999999999 !important;
+}
+
+.cliper_notification.active {
+  opacity: 1;
+  transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+}
+
+.notification_content,
+.notification_title {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification_title {
+  border-bottom: 1px solid #f0f0f0;
+}

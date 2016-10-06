@@ -121,16 +121,6 @@ document.getElementById('cliper_login').onclick = function() {
 document.getElementById('cliper_logout').onclick = function() {
   logout();
 }
-// user experience
-// $('.cliper_form').on('keydown', function(e) {
-//   var $this = $(this);
-//   if (e.which === 13) {
-//     var $nextInput = $this.siblings('.cliper_form');
-//     if ($this.value && $nextInput.value) {
-//       $this.next('.cliper_form').focus();
-//     }
-//   }
-// });
 // initial
 getCsrf();
 chrome.storage.sync.get('user', function(result) {

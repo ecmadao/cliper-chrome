@@ -1,6 +1,5 @@
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.method === 'add_cliper_success') {
-    console.log('cliper-success-title: ', message.data);
     showNotification(message.data);
   }
 });

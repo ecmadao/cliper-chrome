@@ -36,6 +36,15 @@ body {
   font-size: 1.5em;
 }
 
+#cliper_userinfo span {
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+#cliper_userinfo span.user_info {
+  font-size: 1.2em;
+}
+
 #cliper_userform.active,
 #cliper_userinfo.active {
   display: block;

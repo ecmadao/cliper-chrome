@@ -33,6 +33,29 @@ function getCsrf() {
   });
 }
 
+function fetchUserInfo(userId) {
+  $.ajax({
+    url: 'http://localhost:5000/user/' + userId + '/info',
+    method: 'get',
+    success: function(data) {
+      $('.user_info').text(data.data);
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+}
+
+function getUserInfo(userId) {
+  if (userId === null) {
+    chrome.storage.sync.get('user', function(result) {
+      result && result.user && fetchUserInfo(result.user.objectId);
+    });
+    return;
+  }
+  fetchUserInfo(userId);
+}
+
 function userSignupOrLogin(url, data) {
   $.ajax({
     url: url,
@@ -102,6 +125,7 @@ function setPopDOM(user) {
     userform.className = "disabled";
     userinfo.className = "active";
     $('.user_name').text(user.username);
+    getUserInfo(user.objectId);
   } else {
     userform.className = "active";
     userinfo.className = "disabled";
@@ -124,5 +148,5 @@ document.getElementById('cliper_logout').onclick = function() {
 // initial
 getCsrf();
 chrome.storage.sync.get('user', function(result) {
-  setPopDOM(result && result.user);
+  result && setPopDOM(result.user);
 });

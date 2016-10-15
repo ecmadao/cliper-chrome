@@ -58,6 +58,7 @@ body {
 .cliper_form {
   outline: none;
   border: none;
+  border: 1px solid transparent;
   background-color: #fff;
   padding: 8px 10px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
@@ -65,6 +66,10 @@ body {
   -webkit-border-radius: 2px;
   width: 150px;
   margin-bottom: 15px;
+}
+
+.cliper_form.error {
+  border: 1px solid #C62828;
 }
 
 #cliper_logout,

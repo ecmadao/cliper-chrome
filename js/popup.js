@@ -88,10 +88,20 @@ function signUp(email, password) {
 function sibmit(func) {
   var email = getValidateEmail('cliper_email');
   var password = getValidatePassword('cliper_password');
-  if (email && password) {
-    toggleLoading(true);
-    func(email, password);
+  if (email) {
+    $('#cliper_email').removeClass('error');
+  } else {
+    $('#cliper_email').addClass('error');
+    return;
   }
+  if (password) {
+    $('#cliper_password').removeClass('error');
+  } else {
+    $('#cliper_password').addClass('error');
+    return;
+  }
+  toggleLoading(true);
+  func(email, password);
 }
 
 function login(email, password) {

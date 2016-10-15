@@ -1,6 +1,6 @@
 # cliper-chrome
 
-A chrome extension to clip paragraph or page in website. you can download at [cliper chrome extension](https://chrome.google.com/webstore/detail/biijehenaabpogldekblkfgooifmagbi/publish-accepted)
+A chrome extension to clip paragraph or page in website. you can download at [cliper chrome extension](https://chrome.google.com/webstore/detail/biijehenaabpogldekblkfgooifmagbi)
 
 ## Screen shoots
 

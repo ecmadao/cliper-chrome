@@ -1,4 +1,5 @@
 var csrf = '';
+var getCsrfUrl = "http://cliper.com.cn/csrf";
 
 function validateEmail(email) {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
@@ -22,7 +23,7 @@ function getValidatePassword(targetId) {
 
 function getCsrf() {
   $.ajax({
-    url: 'http://localhost:5000/csrf',
+    url: getCsrfUrl,
     method: 'get',
     success: function(data) {
       csrf = data.data;
@@ -35,7 +36,7 @@ function getCsrf() {
 
 function fetchUserInfo(userId) {
   $.ajax({
-    url: 'http://localhost:5000/user/' + userId + '/info',
+    url: 'http://cliper.com.cn/user/' + userId + '/info',
     method: 'get',
     success: function(data) {
       $('.user_info').text(data.data);
@@ -57,8 +58,9 @@ function getUserInfo(userId) {
 }
 
 function userSignupOrLogin(url, data) {
+  var baseUrl = "http://cliper.com.cn";
   $.ajax({
-    url: url,
+    url: baseUrl + url,
     method: 'post',
     data: data,
     success: function(data) {
@@ -82,7 +84,7 @@ function signUp(email, password) {
     "password": password,
     "_csrf": csrf
   };
-  userSignupOrLogin('http://localhost:5000/user/signup', data);
+  userSignupOrLogin('/user/signup', data);
 }
 
 function sibmit(func) {
@@ -110,7 +112,7 @@ function login(email, password) {
     "password": password,
     "_csrf": csrf
   };
-  userSignupOrLogin('http://localhost:5000/user/login', data);
+  userSignupOrLogin('/user/login', data);
 }
 
 function logout() {

@@ -1,9 +1,11 @@
 var selectionObj = null;
 var userId = '';
+var getCsrfUrl = "http://cliper.com.cn/csrf";
+var postCliper = "http://cliper.com.cn/cliper/new";
 
 function addCliper(func) {
   $.ajax({
-    url: 'http://localhost:5000/csrf',
+    url: getCsrfUrl,
     method: 'get',
     success: function(data) {
       func(data.data);
@@ -18,7 +20,7 @@ function addNewCliper(csrf) {
   var cliper = selectionObj;
   cliper['userId'] = userId;
   $.ajax({
-    url: 'http://localhost:5000/cliper/new',
+    url: postCliper,
     method: 'post',
     data: {
       cliper: cliper,

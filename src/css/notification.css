@@ -35,6 +35,10 @@
   display: block;
 }
 
+.notification_content {
+  color: #1E88E5;
+}
+
 .notification_title {
   font-size: 12px;
   font-weight: 800;

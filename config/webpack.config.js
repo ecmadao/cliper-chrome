@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanPlugin = require('clean-webpack-plugin');
 const PATH = require('./path');
 const path = require('path');
 const fs = require('fs');
@@ -21,8 +23,7 @@ module.exports = {
   entry: entries,
   output: {
     filename: '[name].bundle.js',
-    path: PATH.BUILD_PATH,
-    libraryTarget: 'commonjs2',
+    path: PATH.BUILD_PATH
   },
   module: {
     loaders: [
@@ -54,16 +55,10 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery"
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //       warnings: false
-    //   }
-    // }),
-    // new webpack.optimize.OccurenceOrderPlugin(),
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': '"production"'
-    // }),
-    // new webpack.NoErrorsPlugin()
+    new CleanPlugin(PATH.BUILD_PATH, {
+      root: PATH.ROOT_PATH,
+      verbose: true
+    })
   ],
   debug: true,
   displayErrorDetails: true,

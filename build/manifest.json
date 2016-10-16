@@ -27,14 +27,15 @@
     "default_title" : "保存到cliper"
   },
   "background": {
-    "scripts": ["src/background.js"],
+    "scripts": ["src/background.bundle.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches" : ["http://*/*", "https://*/*"],
-      "js": ["src/selection.js", "src/notification.js"],
-      "css": ["src/notification.css"]
+      "js": ["src/content_scripts.bundle.js"],
+      "css": ["src/content_scripts.bundle.css"]
     }
-  ]
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

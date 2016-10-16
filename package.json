@@ -4,7 +4,10 @@
   "description": "cliper chrome extension",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "export NODE_ENV=production && npm run build_pro",
+    "build_pro": "./node_modules/webpack/bin/webpack.js --config config/webpack.pro.js -p",
+    "build_dev": "./node_modules/webpack/bin/webpack.js --config config/webpack.config.js"
   },
   "repository": {
     "type": "git",

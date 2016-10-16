@@ -49,7 +49,7 @@ class Selection {
         return;
       }
       const message = this._getSelectionMessage();
-      // console.log(message.data.text);
+      console.log(message.data.text);
       this._sendSelectionMessage(message);
     };
     return this;

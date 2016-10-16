@@ -7,20 +7,20 @@ class Notification {
     });
   }
 
-  notificationTemplate() {
-    return `<div class='cliper_notification active'><div class='notification_title'>成功添加摘记，收录在：</div><div class='notification_content'>${title}</div></div>`;
+  notificationTemplate(title) {
+    return `<div class='cliper_notification active'><div class='notification_title'>成功添加摘记，收录在：</div><a class='notification_content' href="http://cliper.com.cn" target="_blank">${title}</a></div>`;
   }
 
-  _showNotification() {
+  _showNotification(title) {
     const $notification = $(this.notificationTemplate(title));
     $('body').append($notification);
     $notification.addClass('active');
     setTimeout(() => {
       this._removeNotification($notification);
-    }, 2000);
+    }, 3500);
   }
 
-  _removeNotification() {
+  _removeNotification($target) {
     $target.removeClass('active');
     setTimeout(() => {
       $target.remove();

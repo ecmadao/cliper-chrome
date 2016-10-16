@@ -7,6 +7,7 @@ class Background {
   constructor() {
     this.userId = '';
     this.selectionObj = null;
+    this._handleMenuClick = this._handleMenuClick.bind(this);
   }
 
   initial() {

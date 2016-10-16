@@ -36,6 +36,8 @@ window.onmouseup = function(e) {
     return;
   }
   var message = getSelectionMessage();
+  console.log(message.data.text);
+  // alert(message.data.text);
   sendSelectionMessage(message);
 };
 

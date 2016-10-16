@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "cliper",
-  "version": "0.1",
+  "version": "0.2",
   "description": "cliper",
   "permissions": [
     "tabs",
@@ -27,14 +27,14 @@
     "default_title" : "保存到cliper"
   },
   "background": {
-    "scripts": ["js/vendor/jquery-3.1.1.min.js", "js/background.js"],
+    "scripts": ["src/background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches" : ["http://*/*", "https://*/*"],
-      "js": ["js/vendor/jquery-3.1.1.min.js", "js/vendor/keyboard.min.js", "js/selection.js", "js/notification.js"],
-      "css": ["css/notification.css"]
+      "js": ["src/selection.js", "src/notification.js"],
+      "css": ["src/notification.css"]
     }
   ]
 }

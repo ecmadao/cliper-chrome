@@ -92,13 +92,13 @@ class Background {
 
   _listenStorage() {
     chrome.storage.onChanged.addListener((changes, namespace) => {
-      for (key in changes) {
+      Object.keys(changes).forEach((key) => {
         if (key === 'user') {
           const storageChange = changes[key];
           const userObj = storageChange.newValue;
           this.userId = userObj && userObj.objectId;
         }
-      }
+      });
     });
   }
 

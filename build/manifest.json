@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
   "name": "cliper",
-  "version": "0.2",
-  "description": "cliper",
+  "short_name": "cliper",
+  "version": "0.3.5",
+  "description": "cliper chrome extension for http://cliper.com.cn",
   "permissions": [
     "tabs",
     "storage",
@@ -28,11 +29,12 @@
   },
   "background": {
     "scripts": ["src/background.bundle.js"],
-    "persistent": false
+    "persistent": true
   },
   "content_scripts": [
     {
       "matches" : ["http://*/*", "https://*/*"],
+      "exclude_matches": ["http://cliper.com.cn/*", "http://cliper.com.cn/*/*"],
       "js": ["src/content_scripts.bundle.js"],
       "css": ["src/content_scripts.bundle.css"]
     }

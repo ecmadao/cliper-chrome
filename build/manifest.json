@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "cliper",
   "short_name": "cliper",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "cliper chrome extension for http://cliper.com.cn",
   "permissions": [
     "tabs",

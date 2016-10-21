@@ -33,7 +33,7 @@ export const getValidateEmail = (targetId) => {
 
 export const getValidatePassword = (targetId) => {
   var password = document.getElementById(targetId).value;
-  if (password && password.length > 8) {
+  if (password && password.length >= 8) {
     return password;
   }
   return false
